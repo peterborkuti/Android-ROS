@@ -23,4 +23,14 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
+
+    //For ROS
+    compile ('org.ros.android_core:android_honeycomb_mr2:[0.1,0.2)') {
+        exclude group: 'junit'
+        exclude group: 'xml-apis'
+    }
+    // e.g. official msgs
+    compile 'org.ros.rosjava_messages:std_msgs:[0.1,)'
+    compile 'org.ros.rosjava_messages:sensor_msgs:[0.1,)'
+    compile 'org.ros.rosjava_messages:geometry_msgs:[0.1,)'
 }
