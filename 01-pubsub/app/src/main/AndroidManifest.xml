@@ -3,6 +3,7 @@
     package="com.ros.android.pubsub.borkuti.peter.ex01pubsub">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.usb.host" android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -23,6 +24,10 @@
             <intent-filter>
                 <action android:name="org.ros.android.NodeMainExecutorService" />
             </intent-filter>
+        </service>
+        <service
+            android:name="org.ros.android.serial.UsbService"
+            android:enabled="true">
         </service>
     </application>
 

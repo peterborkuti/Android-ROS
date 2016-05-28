@@ -21,7 +21,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Send message to /outputTopic"
+        android:text="Send message to Usb and /outputTopic"
         android:id="@+id/button"
         android:layout_below="@+id/inputText"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Message received from /inputTopic:"
+        android:text="Message received from usb or /inputTopic:"
         android:id="@+id/label"
         android:layout_marginTop="@dimen/abc_action_bar_content_inset_material" />
 
@@ -51,7 +51,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Write to /inputTopic on roscore with \n rostopic pub -1 inputTopic std_msgs/String &quot;hello&quot; \n and check messages with rostopic echo outputTopic"
+        android:text="Write into /inputTopic on roscore with \n rostopic pub -1 inputTopic std_msgs/String &quot;hello&quot; \n and check messages with rostopic echo outputTopic"
         android:id="@+id/help"
         android:layout_marginTop="@dimen/abc_action_bar_content_inset_material" />
 

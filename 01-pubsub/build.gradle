@@ -19,6 +19,7 @@ allprojects {
             url 'https://github.com/rosjava/rosjava_mvn_repo/raw/master'
         }
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 
