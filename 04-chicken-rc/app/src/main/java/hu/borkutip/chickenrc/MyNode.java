@@ -52,7 +52,7 @@ public class MyNode extends AbstractNodeMain {
 
     @Override
     public GraphName getDefaultNodeName() {
-        return GraphName.of("ExampleNode");
+        return GraphName.of("ChickenRCNode");
     }
 
     @Override

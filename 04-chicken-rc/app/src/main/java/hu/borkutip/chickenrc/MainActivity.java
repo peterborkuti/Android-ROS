@@ -2,6 +2,7 @@ package hu.borkutip.chickenrc;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,11 +14,14 @@ import org.ros.node.NodeConfiguration;
 import org.ros.node.NodeMainExecutor;
 
 public class MainActivity extends RosActivity {
+    private static String TAG = "ChickenRC";
+
+    private AcceleroMeter accel;
 
     MyNode node;
 
     public MainActivity() {
-        super("Example", "Example");
+        super(TAG, TAG);
     }
 
     @Override
@@ -36,6 +40,10 @@ public class MainActivity extends RosActivity {
 
         nodeMainExecutor.execute(node, nodeConfiguration);
 
+        accel = new AcceleroMeter(this, (TextView) findViewById(R.id.outputText), node);
+
+        accel.start();
+
         final EditText editText = (EditText) findViewById(R.id.inputText);
         Button sendButton = (Button) findViewById(R.id.button);
 
@@ -48,7 +56,41 @@ public class MainActivity extends RosActivity {
                 }
             }
         });
+    }
 
+    @Override
+    protected void onStop() {
+        Log.d(TAG, "onStop");
+        super.onStop();
+    }
 
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResume");
+        super.onResume();
+        if (accel != null) {
+            accel.start();
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d(TAG, "onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG, "onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(TAG, "onSPause");
+        super.onPause();
+        if (accel != null) {
+            accel.stop();
+        }
     }
 }
