@@ -6,106 +6,44 @@ import static org.junit.Assert.*;
 
 /**
  * Created by peter on 2016.06.06..
+ *
+ *  x : turn, >0 left, <0 right
+ *  y : speed, >0 back, <0 forward
+ *
+ *  I.   x>0, y>0, backward, to left
+ *  II.  x>0, y<0, forward, to left
+ *  III. x<0, y<0, forward, to right
+ *  IV.  x<0, y>0, backward, to right
  */
 public class ArduinoMessageTest {
 
     @Test
-    public void testToHex() throws Exception {
-        assertEquals("00", ArduinoMessage.toHex(0));
-        assertEquals("09", ArduinoMessage.toHex(9));
-        assertEquals("FF", ArduinoMessage.toHex(255));
+    public void testCodeForwardBackward() throws Exception {
+        assertEquals("LBFF;RBFF", ArduinoMessage.code(0, Wheel.ACCELERATION_LIMIT));
+        assertEquals("LFFF;RFFF", ArduinoMessage.code(0, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LB00;RB00", ArduinoMessage.code(0, 0));
+        assertEquals("LB7F;RB7F", ArduinoMessage.code(0, Wheel.ACCELERATION_LIMIT / 2));
+        assertEquals("LF7F;RF7F", ArduinoMessage.code(0, -Wheel.ACCELERATION_LIMIT / 2));
     }
 
     @Test
-    public void testCode() throws Exception {
-        assertEquals("S", ArduinoMessage.code(0, 0));
-        assertEquals( "LFFF;RFFF", ArduinoMessage.code(0, 6));
-        assertEquals("LBFF;RBFF", ArduinoMessage.code(0, -6));
-    }
-
-    /**
-     * ( y < 0) : forward, y > 0: backward
-     * @throws Exception
-     */
-    @Test
-    public void testLeftWheelDirection() throws Exception {
-        final boolean wheel = true; // left wheel
-        final int onlyDirection = ArduinoMessage.RETURN_TYPE_DIRECTION;
-        assertEquals(
-                "straight ahead, forward, left wheel",
-                ArduinoMessage.FORWARD,
-                ArduinoMessage.codeOneWheel(0, -255, wheel, onlyDirection)
-                );
-
-        assertEquals(
-                "straight ahead, backward, left wheel",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(0, 255, wheel, onlyDirection)
-                );
-        assertEquals(
-                "To left, forward, left wheel",
-                ArduinoMessage.FORWARD,
-                ArduinoMessage.codeOneWheel(255, -255, wheel, onlyDirection)
-                );
-        assertEquals(
-                "To left, forward a bit so it will change direction, left wheel",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(255, -100, wheel, onlyDirection)
-                );
-        assertEquals(
-                "To right, backward, left wheel, direction should not changed",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(-255, 255, wheel, onlyDirection)
-                );
-        assertEquals(
-                "To right, backward a bit, left wheel, direction should be changed",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(-255, 100, wheel, onlyDirection)
-                );
+    public void testCodeTurnOnly() throws Exception {
+        assertEquals("LB7F;RF7F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT, 0));
+        assertEquals("LF7F;RB7F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT, 0));
+        assertEquals("LB3F;RF3F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT / 2, 0));
+        assertEquals("LF3F;RB3F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT / 2, 0));
     }
 
     @Test
-    public void testRightWheelDirection() throws Exception {
-        final boolean wheel = false; // right wheel
-        final int onlyDirection = ArduinoMessage.RETURN_TYPE_DIRECTION;
-        assertEquals(
-                "straight ahead, forward, right wheel",
-                ArduinoMessage.FORWARD,
-                ArduinoMessage.codeOneWheel(0, -255, wheel, onlyDirection)
-        );
+    public void testCodeTurn() throws Exception {
+        assertEquals("backward, let", "LBFF;RB00", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT, Wheel.ACCELERATION_LIMIT));
+        assertEquals("LBFF;RB00", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT, Wheel.ACCELERATION_LIMIT));
+        assertEquals("LBFF;RB7F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT / 2, Wheel.ACCELERATION_LIMIT));
+        assertEquals("LF3;RB3F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT / 2, Wheel.ACCELERATION_LIMIT));
 
-        assertEquals(
-                "straight ahead, backward, right wheel",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(0, 255, wheel, onlyDirection)
-        );
-
-        assertEquals(
-                "To left, forward, right wheel",
-                ArduinoMessage.FORWARD,
-                ArduinoMessage.codeOneWheel(255, -255, wheel, onlyDirection)
-        );
-        assertEquals(
-                "To left, forward a bit so it will change direction, right wheel",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(255, -100, wheel, onlyDirection)
-        );
-        assertEquals(
-                "To right, backward, right wheel, direction should not changed",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(-255, 255, wheel, onlyDirection)
-        );
-        assertEquals(
-                "To right, backward a bit, right wheel, direction should be changed",
-                ArduinoMessage.BACKWARD,
-                ArduinoMessage.codeOneWheel(-255, 100, wheel, onlyDirection)
-        );
-    }
-
-
-
-    @Test
-    public void testCodeOneWheel() throws Exception {
-
+        assertEquals("LB7F;RF7F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LF7F;RB7F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LB3F;RF3F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT / 2, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LF3F;RB3F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT / 2, -Wheel.ACCELERATION_LIMIT));
     }
 }
