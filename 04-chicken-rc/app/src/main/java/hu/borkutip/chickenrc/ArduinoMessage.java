@@ -11,7 +11,7 @@ public class ArduinoMessage {
         float leftWheelAccel;
         float rightWheelAccel;
 
-        if ((x < 0) && (y > 0)) {
+        if (((x < 0) && (y > 0)) || ((x > 0) && (y > 0))) {
             leftWheelAccel = y - x / 2;
             rightWheelAccel = y + x / 2;
         }

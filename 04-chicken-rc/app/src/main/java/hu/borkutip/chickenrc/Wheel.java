@@ -36,6 +36,15 @@ public class Wheel {
     }
 
     public String getCommand() {
-        return ((direction == FORWARD) ? "F" : "B") + toHex(speed);
+        return getDirectionLetter() + toHex(speed);
+    }
+
+    public String getDirectionLetter() {
+        return ((direction == FORWARD) ? "F" : "B");
+    }
+
+    @Override
+    public String toString() {
+        return "Wheel{" + getDirectionLetter() + speed + '}';
     }
 }

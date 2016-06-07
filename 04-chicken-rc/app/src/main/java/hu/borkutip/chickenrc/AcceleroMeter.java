@@ -97,10 +97,13 @@ public class AcceleroMeter extends TimerTask implements SensorEventListener {
 
     @Override
     public void run() {
-        String message = ArduinoMessage.code(x, y);
-        message += " @ " + x + "," + y;
+        String arduinoMessage = ArduinoMessage.code(x, y);
+        String message = arduinoMessage + " @ " + x + "," + y;
         ViewModifier viewModifier = new ViewModifier(output, message);
         activity.runOnUiThread(viewModifier);
-        node.send(message);
+
+        String messages[] = arduinoMessage.split(";");
+        node.send(messages[0]);
+        node.send(messages[1]);
     }
 }

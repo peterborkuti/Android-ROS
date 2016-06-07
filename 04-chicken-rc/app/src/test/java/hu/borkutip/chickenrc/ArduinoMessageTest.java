@@ -36,14 +36,14 @@ public class ArduinoMessageTest {
 
     @Test
     public void testCodeTurn() throws Exception {
-        assertEquals("backward, let", "LBFF;RB00", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT, Wheel.ACCELERATION_LIMIT));
+        assertEquals("backward, left", "LB00;RBFF", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT, Wheel.ACCELERATION_LIMIT));
         assertEquals("LBFF;RB00", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT, Wheel.ACCELERATION_LIMIT));
-        assertEquals("LBFF;RB7F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT / 2, Wheel.ACCELERATION_LIMIT));
-        assertEquals("LF3;RB3F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT / 2, Wheel.ACCELERATION_LIMIT));
+        assertEquals("LB7F;RBFF", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT / 2, Wheel.ACCELERATION_LIMIT));
+        assertEquals("LBFF;RB7F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT / 2, Wheel.ACCELERATION_LIMIT));
 
-        assertEquals("LB7F;RF7F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT, -Wheel.ACCELERATION_LIMIT));
-        assertEquals("LF7F;RB7F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT, -Wheel.ACCELERATION_LIMIT));
-        assertEquals("LB3F;RF3F", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT / 2, -Wheel.ACCELERATION_LIMIT));
-        assertEquals("LF3F;RB3F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT / 2, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LB00;RFFF", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LFFF;RB00", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LF7F;RFFF", ArduinoMessage.code(Wheel.ACCELERATION_LIMIT / 2, -Wheel.ACCELERATION_LIMIT));
+        assertEquals("LFFF;RF7F", ArduinoMessage.code(-Wheel.ACCELERATION_LIMIT / 2, -Wheel.ACCELERATION_LIMIT));
     }
 }
