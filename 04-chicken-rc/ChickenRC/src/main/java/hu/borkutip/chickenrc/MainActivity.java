@@ -36,7 +36,7 @@ public class MainActivity extends RosActivity {
                 InetAddressFactory.newNonLoopback().getHostAddress());
         nodeConfiguration.setMasterUri(getMasterUri());
 
-        node = new MyNode(this, (TextView) findViewById(R.id.outputText), "outputTopic", "inputTopic");
+        node = new MyNode(this, (TextView) findViewById(R.id.outputText), "inputTopic", "outputTopic");
 
         nodeMainExecutor.execute(node, nodeConfiguration);
 
