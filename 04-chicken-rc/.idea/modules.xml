@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/04-chicken-rc.iml" filepath="$PROJECT_DIR$/04-chicken-rc.iml" />
       <module fileurl="file://$PROJECT_DIR$/ChickenRC/ChickenRC.iml" filepath="$PROJECT_DIR$/ChickenRC/ChickenRC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChickenUSB/ChickenUSB.iml" filepath="$PROJECT_DIR$/ChickenUSB/ChickenUSB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChickenUSB/app.iml" filepath="$PROJECT_DIR$/ChickenUSB/app.iml" />
     </modules>
   </component>
 </project>

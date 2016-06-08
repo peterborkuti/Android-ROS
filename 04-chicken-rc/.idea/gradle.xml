@@ -9,12 +9,14 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ChickenRC" />
+            <option value="$PROJECT_DIR$/ChickenUSB" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ChickenRC" />
+            <option value="$PROJECT_DIR$/ChickenUSB" />
           </set>
         </option>
       </GradleProjectSettings>

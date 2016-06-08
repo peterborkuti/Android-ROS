@@ -92,7 +92,7 @@ public class AcceleroMeter extends TimerTask implements SensorEventListener {
     public void start() {
         sManager.registerListener(this, accelSensor, SensorManager.SENSOR_DELAY_UI);
         timer = new Timer();
-        timer.schedule(this, 1000, 1000);
+        timer.schedule(this, 2000, 500);
     }
 
     @Override
