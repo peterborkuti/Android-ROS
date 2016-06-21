@@ -62,5 +62,11 @@
         android:id="@+id/credit"
         android:layout_marginTop="@dimen/abc_action_bar_content_inset_material" />
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop motors"
+        android:id="@+id/buttonStop" />
+
 
 </LinearLayout>
