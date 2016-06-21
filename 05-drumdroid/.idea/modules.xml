@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/05-drumdroid.iml" filepath="$PROJECT_DIR$/05-drumdroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DrumdroidRC/DrumdroidRC.iml" filepath="$PROJECT_DIR$/DrumdroidRC/DrumdroidRC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DrumdroidUSB/DrumdroidUSB.iml" filepath="$PROJECT_DIR$/DrumdroidUSB/DrumdroidUSB.iml" />
+    </modules>
+  </component>
+</project>
