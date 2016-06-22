@@ -15,8 +15,6 @@ import org.ros.node.NodeMainExecutor;
 public class MainActivity extends RosActivity {
     private static String TAG = "DrumdroidRC";
 
-    private AcceleroMeter accel;
-
     MyNode node;
 
     public MainActivity() {
@@ -39,12 +37,25 @@ public class MainActivity extends RosActivity {
 
         nodeMainExecutor.execute(node, nodeConfiguration);
 
-        accel = new AcceleroMeter(this, (TextView) findViewById(R.id.outputText), node);
-
-        accel.start();
-
         final EditText editText = (EditText) findViewById(R.id.inputText);
         Button sendButton = (Button) findViewById(R.id.button);
+
+        Button leftStick = (Button) findViewById(R.id.leftStick);
+
+        leftStick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                node.send("L");
+            }
+        });
+        Button rightStick = (Button) findViewById(R.id.rightStick);
+
+        rightStick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                node.send("R");
+            }
+        });
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +78,6 @@ public class MainActivity extends RosActivity {
     protected void onResume() {
         Log.d(TAG, "onResume");
         super.onResume();
-        if (accel != null) {
-            accel.start();
-        }
     }
 
     @Override
@@ -88,8 +96,5 @@ public class MainActivity extends RosActivity {
     protected void onPause() {
         Log.d(TAG, "onSPause");
         super.onPause();
-        if (accel != null) {
-            accel.stop();
-        }
     }
 }

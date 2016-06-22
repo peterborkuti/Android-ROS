@@ -48,19 +48,26 @@
         android:background="@color/material_grey_850"
         android:textColor="#ffffff" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Write to /inputTopic on roscore with \n rostopic pub -1 inputTopic std_msgs/String &quot;hello&quot; \n and check messages with rostopic echo outputTopic"
-        android:id="@+id/help"
-        android:layout_marginTop="@dimen/abc_action_bar_content_inset_material" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Written by Péter Borkuti with the help of ROS android Wiki and \nhttps://github.com/irvs/ros_tms/wiki/how-to-configure-rosjava-apps-with-gradle"
-        android:id="@+id/credit"
-        android:layout_marginTop="@dimen/abc_action_bar_content_inset_material" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Left"
+            android:id="@+id/leftStick"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Right"
+            android:id="@+id/rightStick"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 
 
 </LinearLayout>
