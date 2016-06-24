@@ -205,7 +205,8 @@
         android:layout_height="wrap_content"
         android:text="Setup"
         android:id="@+id/setupButton"
-        android:longClickable="true" />
+        android:longClickable="true"
+        android:enabled="false" />
 
     <LinearLayout
         android:orientation="horizontal"

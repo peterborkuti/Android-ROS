@@ -86,12 +86,14 @@ public class MainActivity extends RosActivity {
                 int rMax = getInteger(R.id.rMax, 0, 180);
                 int rDly = getInteger(R.id.rDelay, 0, 1000);
 
+                /*
                 node.sendToUsb("LR" + lMin);
                 node.sendToUsb("LH" + lMax);
                 node.sendToUsb("RR" + rMin);
                 node.sendToUsb("RH" + rMax);
                 node.sendToUsb("LD" + lDly);
                 node.sendToUsb("RD" + rDly);
+                */
             }
         });
 
